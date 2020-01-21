@@ -7,6 +7,7 @@ import * as courseActions from "../actions/courseActions";
 const ManageCoursePage = props => {
   const [errors, setErrors] = useState({});
   const [courses, setCourses] = useState(courseStore.getCourses());
+  const [authors] = useState(courseStore.getAuthors());
   const [course, setCourse] = useState({
     id: null,
     slug: "",
@@ -64,6 +65,7 @@ const ManageCoursePage = props => {
       <CourseForm
         errors={errors}
         course={course}
+        authors={authors}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />

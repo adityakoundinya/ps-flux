@@ -4,6 +4,7 @@ import actionTypes from "../actions/actionTypes";
 
 const CHANGE_EVENT = "change";
 let _courses = [];
+let _authors = [];
 
 class CourseStore extends EventEmitter {
   addChangeListener(callback) {
@@ -24,6 +25,10 @@ class CourseStore extends EventEmitter {
 
   getCourseBySlug(slug) {
     return _courses.find(course => course.slug === slug);
+  }
+
+  getAuthors() {
+    return _authors;
   }
 }
 
@@ -46,6 +51,10 @@ Dispatcher.register(action => {
       break;
     case actionTypes.LOAD_COURSES:
       _courses = action.courses;
+      store.emitChange();
+      break;
+    case actionTypes.LOAD_AUTHORS:
+      _authors = action.authors;
       store.emitChange();
       break;
 
